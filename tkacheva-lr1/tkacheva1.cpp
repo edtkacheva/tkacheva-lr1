@@ -1,21 +1,21 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-//Структура трубы
+//Pipe structure
 struct pipe {
 	string name;
 	double length;
 	double diameter;
 	bool inrepair;
 };
-//Структура компрессорной станции 
+//Compressor station structure
 struct cstation {
 	string name;
 	int workshop;
 	int workingwshop;
 	double efficiency;
 };
-//Ввод пользователем данных о новой трубе
+//User input for new pipe
 pipe inputpipe() {
 	pipe p;
 	cout << "Enter pipe name: " << endl;
@@ -43,7 +43,7 @@ pipe inputpipe() {
 	} while (cin.fail());
 	return p;
 }
-//Ввод пользователем данных о компрессорной станции
+//User input of compressor station data
 cstation inputcstation() {
 	cstation cs;
 	cout << "Enter the name of the compressor station: " << endl;
@@ -71,26 +71,27 @@ cstation inputcstation() {
 	} while (cin.fail());
 	return cs;
 }
-//Вывод информации о трубе в консоль
+//Outputting information about a pipe to the console
 void outputpipe(pipe p) {
 	cout << "Pipe name: " << p.name << endl;
 	cout << "Pipe length: " << p.length << endl;
 	cout << "Pipe diameter: " << p.diameter << endl;
 	cout << "Condition 'under repair': " << p.inrepair << endl;
 }
-//Вывод информации о компрессорной станции в консоль
+//Outputting information about the compressor station to the console
 void outputcstation(cstation cs) {
 	cout << "Compressor station name: " << cs.name << endl;
 	cout << "The number of workshops: " << cs.workshop << endl;
 	cout << "The number of working workshops: " << cs.workingwshop << endl;
 	cout << "Performance indicator: " << cs.efficiency << endl;
 }
-//Изменение состояния "в ремонте" для трубы
+//Changing the "under repair" status for a pipe
 pipe changeinrepair(pipe p) {
 	p.inrepair = !p.inrepair;
+	cout << "The status 'under repair' has been changed" << endl;
 	return p;
 }
-//Запуск и остановка цехов в компрессорной станции
+//Starting and stopping workshops in a compressor station
 cstation changeworkshop(cstation cs) {
 	cout << "The number of workshops: " << cs.workshop << endl;
 	cout << "The number of working workshops: " << cs.workingwshop << endl;
@@ -103,21 +104,21 @@ cstation changeworkshop(cstation cs) {
 	} while (cin.fail());
 	return cs;
 }
-//Сохранение данных о трубе в файл
+//Saving pipe data to a file
 void ofilepipe(pipe p) {
 	ofstream fout;
 	fout.open("pipe.txt", ofstream::app);
 	fout << p.name << "\t" << p.length << "\t" << p.diameter << "\t" << p.inrepair << endl;
 	fout.close();
 }
-//Сохранение данных о компрессорной станции в файл
+//Saving compressor station data to a file
 void ofilecstation(cstation cs) {
 	ofstream fout;
 	fout.open("cstation.txt", ofstream::app);
 	fout << cs.name << "\t" << cs.workshop << "\t" << cs.workingwshop << "\t" << cs.efficiency << endl;
 	fout.close();
 }
-//Чтение данных о трубах из файла
+//Reading pipe data from a file
 void ifilepipe() {
 	ifstream fin;
 	fin.open("pipe.txt");
@@ -127,7 +128,7 @@ void ifilepipe() {
 	}
 	fin.close();
 }
-//Чтение данных о компрессорных станциях из файла
+//Reading data about compressor stations from a file
 void ifilecstation() {
 	ifstream fin;
 	fin.open("cstation.txt");
