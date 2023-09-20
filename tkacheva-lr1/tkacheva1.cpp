@@ -15,32 +15,50 @@ struct cstation {
 	int workingwshop;
 	double efficiency;
 };
+//Check input
+void checkinput(int& x) {
+	cin >> x;
+	while (cin.fail() || x <= 0)
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Try again!" << endl;
+		cin >> x;
+	}
+}
+void checkinput(double& x) {
+	cin >> x;
+	while (cin.fail() || x <= 0)
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Try again!" << endl;
+		cin >> x;
+	}
+}
+void checkinput(bool& x) {
+	int variable;
+	cin >> variable;
+	while (cin.fail() || !(variable == 0 || variable == 1))
+	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cout << "Try again!" << endl;
+		cin >> variable;
+	}
+	x = variable == 1;
+}
 //User input for new pipe
 pipe inputpipe() {
 	pipe p;
 	cout << "Enter pipe name: " << endl;
 	cin >> p.name;
-	do
-	{
-		cin.clear();
-		cin.ignore(100000, '\n');
-		cout << "Enter pipe length: " << endl;
-		cin >> p.length;
-	} while (cin.fail());
-	do
-	{
-		cin.clear();
-		cin.ignore(100000, '\n');
-		cout << "Enter pipe diameter: " << endl;
-		cin >> p.diameter;
-	} while (cin.fail());
-	do
-	{
-		cin.clear();
-		cin.ignore(100000, '\n');
-		cout << "Is the pipe being repaired? (1 - yes, 0 - no): " << endl;
-		cin >> p.inrepair;
-	} while (cin.fail());
+	cout << "Enter pipe length: " << endl;
+	checkinput(p.length);
+	cout << "Enter pipe diameter: " << endl;
+	checkinput(p.diameter);
+	cout << "Is the pipe being repaired? (1 - yes, 0 - no): " << endl;
+	checkinput(p.inrepair);
 	return p;
 }
 //User input of compressor station data
@@ -48,27 +66,16 @@ cstation inputcstation() {
 	cstation cs;
 	cout << "Enter the name of the compressor station: " << endl;
 	cin >> cs.name;
-	do
-	{
-		cin.clear();
-		cin.ignore(100000, '\n');
-		cout << "Enter the number of workshops: " << endl;
-		cin >> cs.workshop;
-	} while (cin.fail());
-	do
-	{
-		cin.clear();
-		cin.ignore(100000, '\n');
-		cout << "Enter the number of workshops in operation: " << endl;
+	cout << "Enter the number of workshops: " << endl;
+	checkinput(cs.workshop);
+	cout << "Enter the number of workshops in operation: " << endl;
+	checkinput(cs.workingwshop);
+	while (cs.workshop < cs.workingwshop) {
+		cout << "The number of operating compressor stations can't be more than the total number of stations!" << endl << "Try again!" << endl;
 		cin >> cs.workingwshop;
-	} while (cin.fail() || cs.workingwshop > cs.workshop);
-	do
-	{
-		cin.clear();
-		cin.ignore(100000, '\n');
-		cout << "Enter performance indicator: " << endl;
-		cin >> cs.efficiency;
-	} while (cin.fail());
+	}
+	cout << "Enter performance indicator: " << endl;
+	checkinput(cs.efficiency);
 	return cs;
 }
 //Outputting information about a pipe to the console
@@ -95,13 +102,12 @@ pipe changeinrepair(pipe p) {
 cstation changeworkshop(cstation cs) {
 	cout << "The number of workshops: " << cs.workshop << endl;
 	cout << "The number of working workshops: " << cs.workingwshop << endl;
-	do
-	{
-		cin.clear();
-		cin.ignore(100000, '\n');
-		cout << "Enter new number of working workshops: " << endl;
+	cout << "Enter new number of working workshops: " << endl;
+	checkinput(cs.workingwshop);
+	while (cs.workshop < cs.workingwshop) {
+		cout << "The number of operating compressor stations can't be more than the total number of stations!" << endl << "Try again!" << endl;
 		cin >> cs.workingwshop;
-	} while (cin.fail());
+	}
 	return cs;
 }
 //Saving pipe data to a file
