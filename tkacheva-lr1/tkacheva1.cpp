@@ -16,7 +16,7 @@ struct cstation {
 	char efficiency;
 };
 //Check input
-void checkinput(int& x) {
+void checkinputint(int& x) {
 	cin >> x;
 	while (cin.fail() || x <= 0)
 	{
@@ -26,7 +26,7 @@ void checkinput(int& x) {
 		cin >> x;
 	}
 }
-void checkinput(double& x) {
+void checkinputdouble(double& x) {
 	cin >> x;
 	while (cin.fail() || x <= 0)
 	{
@@ -36,7 +36,7 @@ void checkinput(double& x) {
 		cin >> x;
 	}
 }
-void checkinput(bool& x) {
+void checkinputbool(bool& x) {
 	int variable;
 	cin >> variable;
 	while (cin.fail() || !(variable == 0 || variable == 1))
@@ -54,11 +54,11 @@ pipe inputpipe() {
 	cout << "Enter pipe name: " << endl;
 	cin >> p.name;
 	cout << "Enter pipe length: " << endl;
-	checkinput(p.length);
+	checkinputdouble(p.length);
 	cout << "Enter pipe diameter: " << endl;
-	checkinput(p.diameter);
+	checkinputdouble(p.diameter);
 	cout << "Is the pipe being repaired? (1 - yes, 0 - no): " << endl;
-	checkinput(p.inrepair);
+	checkinputbool(p.inrepair);
 	return p;
 }
 //User input of compressor station data
@@ -67,9 +67,9 @@ cstation inputcstation() {
 	cout << "Enter the name of the compressor station: " << endl;
 	cin >> cs.name;
 	cout << "Enter the number of workshops: " << endl;
-	checkinput(cs.workshop);
+	checkinputint(cs.workshop);
 	cout << "Enter the number of workshops in operation: " << endl;
-	checkinput(cs.workingwshop);
+	checkinputint(cs.workingwshop);
 	while (cs.workshop < cs.workingwshop) {
 		cout << "The number of operating compressor stations can't be more than the total number of stations!" << endl << "Try again!" << endl;
 		cin >> cs.workingwshop;
@@ -105,7 +105,7 @@ cstation changeworkshop(cstation cs) {
 	cout << "The number of workshops: " << cs.workshop << endl;
 	cout << "The number of working workshops: " << cs.workingwshop << endl;
 	cout << "Enter new number of working workshops: " << endl;
-	checkinput(cs.workingwshop);
+	checkinputint(cs.workingwshop);
 	while (cs.workshop < cs.workingwshop) {
 		cout << "The number of operating compressor stations can't be more than the total number of stations!" << endl << "Try again!" << endl;
 		cin >> cs.workingwshop;
