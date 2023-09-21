@@ -21,7 +21,7 @@ void checkinput(int& x) {
 	while (cin.fail() || x <= 0)
 	{
 		cin.clear();
-		cin.ignore(1000, '\n');
+		cin.ignore(10000, '\n');
 		cout << "Try again!" << endl;
 		cin >> x;
 	}
@@ -31,7 +31,7 @@ void checkinput(double& x) {
 	while (cin.fail() || x <= 0)
 	{
 		cin.clear();
-		cin.ignore(1000, '\n');
+		cin.ignore(10000, '\n');
 		cout << "Try again!" << endl;
 		cin >> x;
 	}
@@ -42,7 +42,7 @@ void checkinput(bool& x) {
 	while (cin.fail() || !(variable == 0 || variable == 1))
 	{
 		cin.clear();
-		cin.ignore(1000, '\n');
+		cin.ignore(10000, '\n');
 		cout << "Try again!" << endl;
 		cin >> variable;
 	}
