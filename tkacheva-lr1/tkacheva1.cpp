@@ -72,7 +72,7 @@ cstation inputcstation() {
 	inputint(cs.workingwshop);
 	while (cs.workshop < cs.workingwshop) {
 		cout << "The number of operating compressor stations can't be more than the total number of stations!" << endl << "Try again!" << endl;
-		checkinputint(cs.workingwshop);
+		inputint(cs.workingwshop);
 	}
 	while (!(cs.efficiency >= 'A' && cs.efficiency <= 'G')){
 		cout << "Enter performance indicator: " << endl;
