@@ -13,7 +13,7 @@ struct cstation {
 	string name;
 	int workshop;
 	int workingwshop;
-	double efficiency;
+	char efficiency;
 };
 //Check input
 void checkinput(int& x) {
@@ -74,8 +74,10 @@ cstation inputcstation() {
 		cout << "The number of operating compressor stations can't be more than the total number of stations!" << endl << "Try again!" << endl;
 		cin >> cs.workingwshop;
 	}
-	cout << "Enter performance indicator: " << endl;
-	checkinput(cs.efficiency);
+	while (!(cs.efficiency >= 'A' && cs.efficiency <= 'G')){
+		cout << "Enter performance indicator: " << endl;
+		cin >> cs.efficiency;
+	}
 	return cs;
 }
 //Outputting information about a pipe to the console
