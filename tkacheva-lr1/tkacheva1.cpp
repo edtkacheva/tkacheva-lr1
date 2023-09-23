@@ -19,7 +19,7 @@ struct cstation {
 //Check input
 void inputint(int& x) {
 	cin >> x;
-	while (cin.fail() || x <= 0 || cin.peek() != '\n')
+	while (cin.fail() || x < 0 || cin.peek() != '\n')
 	{
 		cin.clear();
 		cin.ignore(10000, '\n');
@@ -29,7 +29,7 @@ void inputint(int& x) {
 }
 void inputdouble(double& x) {
 	cin >> x;
-	while (cin.fail() || x <= 0 || cin.peek() != '\n')
+	while (cin.fail() || x < 0 || cin.peek() != '\n')
 	{
 		cin.clear();
 		cin.ignore(10000, '\n');
@@ -271,4 +271,5 @@ int main() {
 			break;
 		}
 	}
+	return 0;
 }
