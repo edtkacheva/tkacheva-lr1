@@ -173,7 +173,6 @@ void ifile(pipe& p, cstation& cs) {
 	if (fin.is_open()) {
 		while (getline(fin, line)) {
 			if (line == "Pipe: ") {
-				cout << line << endl;
 				fin >> p.name;
 				fin >> p.length;
 				fin >> p.diameter;
@@ -181,7 +180,6 @@ void ifile(pipe& p, cstation& cs) {
 				
 			}
 			else if (line == "Compressor station: ") {
-				cout << line << endl;
 				fin >> cs.name;
 				fin >> cs.workshop;
 				fin >> cs.workingwshop;
@@ -189,12 +187,21 @@ void ifile(pipe& p, cstation& cs) {
 				
 			}
 		}
-		if (p.name.empty() && cs.name.empty()) {
-			cout << "Data doesn't exist" << endl;
-		}
 		fin.close();
-		outputpipe(p);
-		outputcstation(cs);
+		if (p.name.empty()) {
+			cout << "Pipe data doesn't exist." << endl;
+		}
+		else {
+			cout << "pipe: " << endl;
+			outputpipe(p);
+		}
+		if (cs.name.empty()) {
+			cout << "Cstation data doesn't exist." << endl;
+		}
+		else {
+			cout << "CStation: " << endl;
+			outputcstation(cs);
+		}
 	}
 	else {
 		cout << "File couldn't be open" << endl;
@@ -226,25 +233,13 @@ int main() {
 			break;
 		}
 		case 3: {
-			if (p.name.empty() && cs.name.empty()) {
+			/*if (p.name.empty() && cs.name.empty()) {
 				cout << "Object data does't exist." << endl;
 			}
-			else {
-				if (p.name.empty()) {
-					cout << "Pipe data doesn't exist." << endl;
-				}
-				else {
-					cout << "Pipe: " << endl;
-					outputpipe(p);
-				}
-				if (cs.name.empty()) {
-					cout << "Cstation data doesn't exist." << endl;
-				}
-				else {
-					cout << "Compressor station: " << endl;
-					outputcstation(cs);
-				}
-			}
+			else {*/
+			ifile(p, cs);
+				
+			//}
 			break;
 		}
 		case 4: {
