@@ -58,7 +58,8 @@ void inputstring(string& x) {
 pipe inputpipe() {
 	pipe p;
 	cout << "Enter pipe name: " << endl;
-	cin >> p.name;
+	cin.ignore();
+	getline(cin, p.name);
 	cout << "Enter pipe length: " << endl;
 	inputdouble(p.length);
 	cout << "Enter pipe diameter: " << endl;
@@ -71,7 +72,8 @@ pipe inputpipe() {
 cstation inputcstation() {
 	cstation cs;
 	cout << "Enter the name of the compressor station: " << endl;
-	cin >> cs.name;
+	cin.ignore();
+	getline(cin, cs.name);
 	cout << "Enter the number of workshops: " << endl;
 	inputint(cs.workshop);
 	cout << "Enter the number of workshops in operation: " << endl;
