@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdio>
 using namespace std;
 //Pipe structure
 struct pipe {
@@ -177,7 +178,7 @@ void ifile(pipe& p, cstation& cs) {
 				fin >> p.length;
 				fin >> p.diameter;
 				fin >> p.inrepair;
-				outputpipe(p);
+				
 			}
 			else if (line == "Compressor station: ") {
 				cout << line << endl;
@@ -185,13 +186,15 @@ void ifile(pipe& p, cstation& cs) {
 				fin >> cs.workshop;
 				fin >> cs.workingwshop;
 				fin >> cs.efficiency;
-				outputcstation(cs);
+				
 			}
 		}
 		if (p.name.empty() && cs.name.empty()) {
 			cout << "Data doesn't exist" << endl;
 		}
 		fin.close();
+		outputpipe(p);
+		outputcstation(cs);
 	}
 	else {
 		cout << "File couldn't be open" << endl;
